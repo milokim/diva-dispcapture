@@ -35,7 +35,8 @@ class DispCaptureThread(object):
 		conn.close()
 
 	def start_timer(self):
-		threading.Timer(self.duration, self.timer_expired).start()
+		timeout = self.duration + 5
+		threading.Timer(timeout, self.timer_expired).start()
 
 	def timer_expired(self):
 		dest = self.user + "@" + self.host + ":/home/" + self.user + "/output/"
