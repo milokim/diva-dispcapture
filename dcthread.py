@@ -42,7 +42,7 @@ class DispCaptureThread(object):
 		self._exec("scp demo.mp4 " + dest)
 
 	def capture_hdmi(self):
-		self._exec("python picapture.py")
+		self._exec("python picapture.py -t " + str(self.duration*1000))
 
 	def _exec(self, args):
 		out = args.split(' ')
