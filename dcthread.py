@@ -1,3 +1,4 @@
+import os
 import socket
 import sys
 import subprocess
@@ -12,7 +13,10 @@ class DispCaptureThread(object):
 		self.duration = duration
 
 		self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		self.sock.bind((host, port))
+		self.sock.bind((self.get_ip(), port))
+
+	def get_ip(self):
+		return os.popen('/sbin/ifconfig eth0 | grep "inet\ addr" | cut -d: -f2 | cut -d" " -f1').read()
 
 	def listen(self):
 		self.sock.listen(1)
