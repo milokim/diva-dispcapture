@@ -1,0 +1,3 @@
+#!/bin/bash
+cd /home/pi/development/diva-dispcapture/
+/usr/bin/python dcthread.py

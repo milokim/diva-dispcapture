@@ -1,0 +1,10 @@
+[Unit]
+Description=DIVA Display Capture Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/diva-dispcapture
+
+[Install]
+WantedBy=multi-user.target
