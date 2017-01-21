@@ -30,7 +30,7 @@ class DispCaptureThread(object):
 			data = conn.recv(32).decode()
 
 			if data == "capture:hdmi":
-				print "Start capturing HDMI during" + self.duration + " seconds"
+				print "Start capturing HDMI during " + str(self.duration) + " seconds"
 				self.start_timer()
 				self.capture_hdmi()
 
