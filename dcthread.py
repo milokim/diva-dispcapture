@@ -22,6 +22,7 @@ class DispCaptureThread(object):
 		self.sock.listen(1)
 		while True:
 			conn, addr = self.sock.accept()
+			self.conn = conn
 			print ("Connected from " + str(addr))
 			threading.Thread(target = self.recv_thread,args = (conn,addr)).start()
 
@@ -44,7 +45,9 @@ class DispCaptureThread(object):
 
 	def timer_expired(self):
 		dest = self.user + "@" + self.host + ":/home/" + self.user + "/output/"
-		self._exec("scp demo.mp4 " + dest)
+		os.system("scp demo.mp4 " + dest)
+		self.noti_completion("done")
+		print "Done!"
 
 	def capture_hdmi(self):
 		self._exec("python picapture.py -t " + str(self.duration*1000))
@@ -52,6 +55,9 @@ class DispCaptureThread(object):
 	def _exec(self, args):
 		out = args.split(' ')
 		subprocess.Popen(out)
+
+	def noti_completion(self, msg):
+		self.conn.send(msg);
 
 def help():
 	print """
