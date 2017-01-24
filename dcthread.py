@@ -6,7 +6,7 @@ import threading
 import time
 
 class DispCaptureThread(object):
-	def __init__(self, user, host, port, timeout):
+	def __init__(self, user, host, port, duration):
 		self.user = user
 		self.host = host
 		self.port = port
